@@ -1,21 +1,21 @@
-# Feedbackradio
+# jQuery FeedbackRadio
 
-The best jQuery plugin ever.
+jQuery FeedbackRadio plugin turns consecutive radio buttons into rating feedback stars.
 
 ## Getting Started
 Download the [production version][min] or the [development version][max].
 
-[min]: https://raw.github.com/ain/jquery-feedbackradio/master/dist/feedbackradio.min.js
-[max]: https://raw.github.com/ain/jquery-feedbackradio/master/dist/feedbackradio.js
+[min]: https://raw.github.com/ain/jquery-feedbackradio/master/dist/jquery-feedbackradio.min.js
+[max]: https://raw.github.com/ain/jquery-feedbackradio/master/dist/jquery-feedbackradio.js
 
 In your web page:
 
 ```html
 <script src="jquery.js"></script>
-<script src="dist/feedbackradio.min.js"></script>
+<script src="dist/jquery-feedbackradio.min.js"></script>
 <script>
 jQuery(function($) {
-  $.awesome(); // "awesome"
+  // Coming soon
 });
 </script>
 ```
