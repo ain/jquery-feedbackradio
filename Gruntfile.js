@@ -1,4 +1,6 @@
-'use strict';
+(function() {
+  'use strict';
+}());
 
 module.exports = function(grunt) {
 
@@ -23,7 +25,7 @@ module.exports = function(grunt) {
       dist: {
         src: ['src/<%= pkg.name %>.js'],
         dest: 'dist/<%= pkg.name %>.js'
-      },
+      }
     },
     uglify: {
       options: {
@@ -32,7 +34,7 @@ module.exports = function(grunt) {
       dist: {
         src: '<%= concat.dist.dest %>',
         dest: 'dist/<%= pkg.name %>.min.js'
-      },
+      }
     },
     qunit: {
       files: ['test/**/*.html']
@@ -46,7 +48,7 @@ module.exports = function(grunt) {
       },
       test: {
         src: ['test/**/*.js']
-      },
+      }
     },
     watch: {
       gruntfile: {
@@ -60,8 +62,8 @@ module.exports = function(grunt) {
       test: {
         files: '<%= jshint.test.src %>',
         tasks: ['jshint:test', 'qunit']
-      },
-    },
+      }
+    }
   });
 
   // These plugins provide necessary tasks.
@@ -75,6 +77,6 @@ module.exports = function(grunt) {
   // Default task.
   grunt.registerTask('default', ['jshint', 'qunit', 'clean', 'concat', 'uglify']);
   
-  // Travis CI task
+  // Travis CI task.
   grunt.registerTask('travis', ['jshint', 'qunit']);
 };
