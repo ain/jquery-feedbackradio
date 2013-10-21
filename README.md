@@ -1,4 +1,4 @@
-# jQuery FeedbackRadio
+# jQuery FeedbackRadio [![Build Status](https://travis-ci.org/ain/jquery-feedbackradio.png?branch=master)](https://travis-ci.org/ain/jquery-feedbackradio)
 
 jQuery FeedbackRadio plugin turns consecutive radio buttons into rating feedback stars.
 
