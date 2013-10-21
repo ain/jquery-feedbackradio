@@ -1,4 +1,4 @@
-/*
+/**
  * jQuery FeedbackRadio plugin.
  * https://github.com/ain/jquery-feedbackradio
  *
@@ -8,15 +8,25 @@
 
 (function($, window, document, undefined) {
 
-  /*
+  /**
    * Plugin UID.
-   *
    * @type String
    */
   var pluginName = 'feedbackradio';
 
+  /**
+   * Plugin defaults.
+   * @type {Object}
+   */
   var defaults = {};
 
+  /**
+   * Creates new FeedbackRadio control.
+   * @constructor
+   * @param {jQuery} jQuery object.
+   * @param {Object} Plugin options overriding the defaults.
+   * @returns {_L9.FeedbackRadio}
+   */
   function FeedbackRadio(element, options) {
     this.element = element;
     this.options = $.extend({}, defaults, options);
@@ -25,6 +35,9 @@
     this._init();
   }
   
+  /**
+   * Initialise plugin.
+   */
   FeedbackRadio.prototype._init = function() {
     var self = this;
     var star = $('<a href="#" class="feedbackradio-star">★</a>')
@@ -32,11 +45,21 @@
     $(this.element).hide().after(star);
   };
   
+  /**
+   * Star click handler.
+   */
   FeedbackRadio.prototype._handleStarClick = function() {
     $('.feedbackradio-star').removeClass('feedbackradio-star--active');
     $(this).addClass('feedbackradio-star--active').prev().prop('checked', true);
   };
 
+  /**
+   * jQuery FeedbackRadio plugin.
+   * @class FeedbackRadio
+   * @memberOf jQuery.fn
+   * @param {Object} Plugin options.
+   * @returns {_L9.$@call;each}
+   */
   $.fn[pluginName] = function(options) {
     return this.each(function() {
       if (!$.data(this, 'plugin_' + pluginName)) {
