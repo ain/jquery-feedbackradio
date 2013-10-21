@@ -15,14 +15,7 @@
    */
   var pluginName = 'feedbackradio';
 
-  var defaults = {
-    colours: {
-      active: '#ccc',
-      selected: '#ddd',
-      hover: '#eee'
-    },
-    increment: 2
-  };
+  var defaults = {};
 
   function FeedbackRadio(element, options) {
     this.element = element;
