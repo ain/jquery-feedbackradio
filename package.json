@@ -2,7 +2,7 @@
   "name": "jquery-feedbackradio",
   "version": "0.1.0",
   "engines": {
-    "node": ">= 0.8.0"
+    "node": ">= 0.9.0"
   },
   "scripts": {
     "test": "grunt qunit"
