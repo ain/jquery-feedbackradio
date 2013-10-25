@@ -47,11 +47,21 @@ module.exports = function(grunt) {
       },
       src: {
         files: '<%= jshint.src.src %>',
-        tasks: ['jshint:src', 'qunit']
+        tasks: ['jshint:src', 'uglify']
       },
       test: {
         files: '<%= jshint.test.src %>',
         tasks: ['jshint:test', 'qunit']
+      }
+    },
+    copy: {
+      example: {
+        files: [{
+          cwd: 'dist/', 
+          src: '<%= pkg.name %>.min.js',
+          dest: 'example/',
+          expand: true
+        }]
       }
     }
   });
@@ -62,9 +72,10 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-qunit');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-copy');
 
   // Default task.
-  grunt.registerTask('default', ['jshint', 'qunit', 'clean', 'uglify']);
+  grunt.registerTask('default', ['jshint', 'qunit', 'clean', 'uglify', 'copy']);
   
   // Travis CI task.
   grunt.registerTask('travis', ['jshint', 'qunit']);
