@@ -32,6 +32,7 @@
     this.options = $.extend({}, defaults, options);
     this._defaults = defaults;
     this._name = pluginName;
+    console.log('wtf');
     this._init();
   }
   
@@ -42,15 +43,24 @@
     var self = this;
     var star = $('<a href="#" class="feedbackradio-star">★</a>')
       .on('click', self._handleStarClick);
-    $(this.element).hide().after(star);
+    $(this.element).attr('type', 'hidden').after(star);
+    this._adjustLabels();
   };
   
   /**
    * Star click handler.
    */
   FeedbackRadio.prototype._handleStarClick = function() {
+    console.log('click!');
     $('.feedbackradio-star').removeClass('feedbackradio-star--active');
     $(this).addClass('feedbackradio-star--active').prev().prop('checked', true);
+  };
+  
+  FeedbackRadio.prototype._adjustLabels = function() { 
+    console.log('adjusting labels..');
+    if ($(this.element).parent().is('label')) {
+      console.log('label!');
+    }
   };
 
   /**
