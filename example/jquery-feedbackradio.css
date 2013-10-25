@@ -1,0 +1,3 @@
+.feedbackradio-star {color: lightgray; text-decoration: none;}
+.feedbackradio-star:hover {color: gold;}
+.feedbackradio-star--active {color: gold;}

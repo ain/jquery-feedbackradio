@@ -42,23 +42,36 @@
     var self = this;
     var star = $('<a href="#" class="feedbackradio-star">★</a>')
       .on('click', self._handleStarClick);
-    $(this.element).attr('type', 'hidden').after(star);
-    this._adjustLabels();
+    if ($(this.element).parent().is('label')) {
+      self._removeText($(this.element).parent());
+    }
+    $(this.element).hide().after(star);
   };
   
   /**
    * Star click handler.
    */
-  FeedbackRadio.prototype._handleStarClick = function() {
+  FeedbackRadio.prototype._handleStarClick = function(event) {
     $('.feedbackradio-star').removeClass('feedbackradio-star--active');
     $(this).addClass('feedbackradio-star--active').prev().prop('checked', true);
+    event.stopPropagation();
+    return false;
   };
   
-  FeedbackRadio.prototype._adjustLabels = function() { 
-    if ($(this.element).parent().is('label')) {
-    }
+  /**
+   * Remove all loose text in HTML tag.
+   * Keep children elements.
+   * @param {HMTLObject} element HTML element to remove text from.
+   * @returns {HTMLOnject} HTML element without text.
+   */
+  FeedbackRadio.prototype._removeText = function(element) {
+    var newElement = $('<' + element[0].nodeName + '/>');
+    element.children().each(function() {
+      newElement.append(this);
+    });
+    element.replaceWith(newElement);
   };
-
+  
   /**
    * jQuery FeedbackRadio plugin.
    * @class FeedbackRadio
