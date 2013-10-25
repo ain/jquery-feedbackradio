@@ -52,8 +52,15 @@
    * Star click handler.
    */
   FeedbackRadio.prototype._handleStarClick = function(event) {
-    $('.feedbackradio-star').removeClass('feedbackradio-star--active');
-    $(this).addClass('feedbackradio-star--active').prev().prop('checked', true);
+    var $stars = $('.feedbackradio-star');
+    var id = $stars.index($(this));
+    $stars.removeClass('feedbackradio-star--active');
+    var i = 0;
+    while (i <= id) {
+      $stars.eq(i).addClass('feedbackradio-star--active');
+      i++;
+    }
+    $(this).prev().trigger('click');
     event.stopPropagation();
     return false;
   };
