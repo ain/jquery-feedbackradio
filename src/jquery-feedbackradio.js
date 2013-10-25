@@ -19,11 +19,17 @@
    * @type {Object}
    */
   var defaults = {};
+  
+  /**
+   * Consider default value of converted radio input.
+   * @type {Boolean} Consider if true, do not consider if false.
+   */
+  defaults.considerDefault = true;
 
   /**
    * Creates new FeedbackRadio control.
    * @constructor
-   * @param {jQuery} jQuery object.
+   * @param {jQuery} jQuery object holding radio inputs.
    * @param {Object} Plugin options overriding the defaults.
    * @returns {_L9.FeedbackRadio}
    */
@@ -39,20 +45,29 @@
    * Initialise plugin.
    */
   FeedbackRadio.prototype._init = function() {
+    var $inputs = $(this.element).find('input[type="radio"]');
     var self = this;
-    var star = $('<a href="#" class="feedbackradio-star">★</a>')
-      .on('click', self._handleStarClick);
-    if ($(this.element).parent().is('label')) {
-      self._removeText($(this.element).parent());
+    $inputs.each(function() {
+      if ($(this).parent().is('label')) {
+        self._removeText($(this).parent());
+      }
+      var star = $('<a href="#" class="feedbackradio-star">★</a>')
+        .on('click', self, self._handleStarClick);
+      $(this).hide().after(star);
+      
+    });
+    var checkedId = $inputs.index($inputs.filter(':checked'));
+    if (this.options.considerDefault && checkedId !== -1) {
+      this.getStars().eq(checkedId).trigger('click');
     }
-    $(this.element).hide().after(star);
   };
   
   /**
    * Star click handler.
    */
   FeedbackRadio.prototype._handleStarClick = function(event) {
-    var $stars = $('.feedbackradio-star');
+    var self = event.data;
+    var $stars = self.getStars();
     var id = $stars.index($(this));
     $stars.removeClass('feedbackradio-star--active');
     var i = 0;
@@ -63,6 +78,14 @@
     $(this).prev().trigger('click');
     event.stopPropagation();
     return false;
+  };
+  
+  /**
+   * Return all stars representing radio inputs.
+   * @returns {jQuery[]} Array of jQuery star objects.
+   */
+  FeedbackRadio.prototype.getStars = function() {
+    return $('.feedbackradio-star');
   };
   
   /**
