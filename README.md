@@ -22,6 +22,9 @@ jQuery(function($) {
 </script>
 ```
 
+## Requirements
+- jQuery 1.2.6+
+
 ## Documentation
 _(Coming soon)_
 
