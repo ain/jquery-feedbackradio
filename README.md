@@ -29,7 +29,7 @@ jQuery(function($) {
 _(Coming soon)_
 
 ## Examples
-_(Coming soon)_
+See [example](https://raw.github.com/ain/jquery-feedbackradio/master/example/feedbackradio.html).
 
 ## Release History
 _(Nothing yet)_
