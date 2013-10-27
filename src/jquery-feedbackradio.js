@@ -10,7 +10,7 @@
 
   /**
    * Plugin UID.
-   * @type String
+   * @type {String}
    */
   var pluginName = 'feedbackradio';
 
@@ -23,6 +23,7 @@
   /**
    * Consider default value of converted radio input.
    * @type {Boolean} Consider if true, do not consider if false.
+   * @default true
    */
   defaults.considerDefault = true;
   
@@ -69,6 +70,7 @@
   
   /**
    * Star click handler.
+   * @return {Boolean} false Always return false to kill the event propagation.
    */
   FeedbackRadio.prototype._handleStarClick = function(event) {
     var self = event.data;
