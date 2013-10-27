@@ -2,8 +2,6 @@
 
 jQuery FeedbackRadio plugin turns consecutive radio buttons into rating feedback stars.
 
-NB! WORK IN PROGRESS!
-
 ## Getting Started
 Download the [production version][min] or the [development version][max].
 
@@ -33,4 +31,4 @@ See inline JSDoc comments in [source](https://raw.github.com/ain/jquery-feedback
 See the [example/](https://github.com/ain/jquery-feedbackradio/tree/master/example) folder.
 
 ## Release History
-No releases yet as it's work in progress. Watch this space!
+- 2013-10-27  v0.1.0  First production-ready release with basic functionality.
