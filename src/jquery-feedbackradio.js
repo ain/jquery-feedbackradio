@@ -75,7 +75,7 @@
   FeedbackRadio.prototype._handleStarClick = function(event) {
     var self = event.data;
     var $stars = self.getStars();
-    var id = $stars.index($(this));
+    var id = $stars.index(this);
     $stars.removeClass('feedbackradio-star--active');
     var i = 0;
     while (i <= id) {
