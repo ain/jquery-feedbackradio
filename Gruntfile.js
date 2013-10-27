@@ -75,7 +75,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-copy');
 
   // Default task.
-  grunt.registerTask('default', ['jshint', 'qunit', 'clean', 'uglify', 'copy']);
+  grunt.registerTask('default', ['clean', 'uglify', 'copy']);
   
   // Travis CI task.
   grunt.registerTask('travis', ['jshint', 'qunit']);
