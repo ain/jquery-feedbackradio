@@ -14,10 +14,11 @@ In your web page:
 
 ```html
 <script src="jquery.js"></script>
-<script src="dist/jquery-feedbackradio.min.js"></script>
+<script src="jquery-feedbackradio.min.js"></script>
 <script>
 jQuery(function($) {
-  // Coming soon
+  // Call on the ID of the fieldset radio inputs reside in.
+  $('#feedback-fieldset').feedbackradio();
 });
 </script>
 ```
@@ -32,4 +33,4 @@ _(Coming soon)_
 See [example](https://raw.github.com/ain/jquery-feedbackradio/master/example/feedbackradio.html).
 
 ## Release History
-_(Nothing yet)_
+No releases yet as it's work in progress. Watch this space!
