@@ -25,6 +25,13 @@
    * @type {Boolean} Consider if true, do not consider if false.
    */
   defaults.considerDefault = true;
+  
+  /**
+   * Selector to target radio inputs in container plugin is initialised on.
+   * @type {String}
+   * @default input[type="radio"]
+   */
+  defaults.inputSelector = 'input[type="radio"]';
 
   /**
    * Creates new FeedbackRadio control.
@@ -43,18 +50,16 @@
   
   /**
    * Initialise plugin.
+   * - Flatten the (possible) structure between the element and the inputs.
+   * - Use deprecated jQuery.bind() for legacy support.
    */
   FeedbackRadio.prototype._init = function() {
-    var $inputs = $(this.element).find('input[type="radio"]');
+    var $inputs = this._flatten();
     var self = this;
     $inputs.each(function() {
-      if ($(this).parent().is('label')) {
-        self._removeText($(this).parent());
-      }
       var star = $('<a href="#" class="feedbackradio-star">★</a>')
-        .on('click', self, self._handleStarClick);
+        .bind('click', self, self._handleStarClick);
       $(this).hide().after(star);
-      
     });
     var checkedId = $inputs.index($inputs.filter(':checked'));
     if (this.options.considerDefault && checkedId !== -1) {
@@ -89,17 +94,13 @@
   };
   
   /**
-   * Remove all loose text in HTML tag.
-   * Keep children elements.
-   * @param {HMTLObject} element HTML element to remove text from.
-   * @returns {HTMLOnject} HTML element without text.
+   * Flatten matched inputs to same level into initialised element.
+   * @return {jQuery[]} Array of targeted input elements.
    */
-  FeedbackRadio.prototype._removeText = function(element) {
-    var newElement = $('<' + element[0].nodeName + '/>');
-    element.children().each(function() {
-      newElement.append(this);
-    });
-    element.replaceWith(newElement);
+  FeedbackRadio.prototype._flatten = function() {
+    var $inputs = $(this.element).find(this.options.inputSelector);
+    $(this.element).empty().append($inputs);
+    return $inputs;
   };
   
   /**
