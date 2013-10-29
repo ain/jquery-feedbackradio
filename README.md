@@ -25,7 +25,7 @@ jQuery(function($) {
 - jQuery 1.2.6+
 
 ## Documentation
-See inline JSDoc comments in [source](https://raw.github.com/ain/jquery-feedbackradio/master/src/jquery-feedbackradio.js).
+See inline JSDoc comments in [source](https://github.com/ain/jquery-feedbackradio/blob/master/src/jquery-feedbackradio.js).
 
 ## Examples
 See the [example/](https://github.com/ain/jquery-feedbackradio/tree/master/example) folder.
