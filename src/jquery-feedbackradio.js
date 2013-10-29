@@ -71,7 +71,10 @@
   defaults.step = 2;
   
   /**
-   * 
+   * Default order of the block stars.
+   *  ASC - ascending, less stars on top.
+   *  DESC - descending, most stars on top.
+   * @default ASC
    */
   defaults.order = 'ASC';
 
@@ -113,10 +116,21 @@
     }
   };
   
+  /**
+   * Get display class for the stars.
+   * @see DISPLAY
+   * @returns {String} Class name with a display type of the stars.
+   */
   FeedbackRadio.prototype._getStarDisplayClass = function() {
     return 'feedbackradio-star--display-' + this.options.display;
   };
   
+  /**
+   * Get label for the stars.
+   * Label aka anchor text.
+   * @param {Number} count Count of stars in the label.
+   * @returns {String} label text.
+   */
   FeedbackRadio.prototype._getStarLabel = function(count) {
     var star = '★';
     if (this.options.display === DISPLAY.BLOCK) {
