@@ -31,4 +31,5 @@ See inline JSDoc comments in [source](https://raw.github.com/ain/jquery-feedback
 See the [example/](https://github.com/ain/jquery-feedbackradio/tree/master/example) folder.
 
 ## Release History
+- 2013-10-29  v0.2.0  Optional vertical block layout for feedback stars.
 - 2013-10-27  v0.1.0  First production-ready release with basic functionality.
