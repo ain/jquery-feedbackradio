@@ -13,6 +13,28 @@
    * @type {String}
    */
   var pluginName = 'feedbackradio';
+  
+  /**
+   * Display types.
+   *  BLOCK - component features several lines of stars.
+   *  INLINE - all stars displayed one after the other on single line.
+   * @enum {String} 
+   */
+  var DISPLAY = {
+    BLOCK: 'block',
+    INLINE: 'inline'
+  };
+  
+  /**
+   * Order of the stars on block layout.
+   *  DESC - most stars displayed on top.
+   *  ASC - least stars displayed on top.
+   * @enum {String}
+   */
+  var ORDER = {
+    ASC: 'asc',
+    DESC: 'desc'
+  };
 
   /**
    * Plugin defaults.
@@ -33,6 +55,25 @@
    * @default input[type="radio"]
    */
   defaults.inputSelector = 'input[type="radio"]';
+  
+  /**
+   * Default display type.
+   * @type {String}
+   * @default inline
+   */
+  defaults.display = DISPLAY.INLINE;
+  
+  /**
+   * Default step for block feedbackradio component.
+   * @type {Number}
+   * @default 1
+   */
+  defaults.step = 2;
+  
+  /**
+   * 
+   */
+  defaults.order = 'ASC';
 
   /**
    * Creates new FeedbackRadio control.
@@ -55,10 +96,14 @@
    * - Use deprecated jQuery.bind() for legacy support.
    */
   FeedbackRadio.prototype._init = function() {
-    var $inputs = this._flatten();
     var self = this;
+    var reverseOrder = this.options.order === ORDER.DESC;
+    var $inputs = this._flatten(reverseOrder);
+    if (reverseOrder) {
+      $inputs.reverse();
+    }
     $inputs.each(function() {
-      var star = $('<a href="#" class="feedbackradio-star">★</a>')
+      var star = $('<a href="#" class="feedbackradio-star ' + self._getStarDisplayClass() + '">' + self._getStarLabel($inputs.index(this)) + '</a>')
         .bind('click', self, self._handleStarClick);
       $(this).hide().after(star);
     });
@@ -66,6 +111,18 @@
     if (this.options.considerDefault && checkedId !== -1) {
       this.getStars().eq(checkedId).trigger('click');
     }
+  };
+  
+  FeedbackRadio.prototype._getStarDisplayClass = function() {
+    return 'feedbackradio-star--display-' + this.options.display;
+  };
+  
+  FeedbackRadio.prototype._getStarLabel = function(count) {
+    var star = '★';
+    if (this.options.display === DISPLAY.BLOCK) {
+      return Array(this.options.step * count + 2).join(star);
+    }
+    return star;
   };
   
   /**
@@ -77,10 +134,15 @@
     var $stars = self.getStars();
     var id = $stars.index(this);
     $stars.removeClass('feedbackradio-star--active');
-    var i = 0;
-    while (i <= id) {
-      $stars.eq(i).addClass('feedbackradio-star--active');
-      i++;
+    if (self.options.display === DISPLAY.BLOCK) {
+      $(this).addClass('feedbackradio-star--active');
+    }
+    else {
+      var i = 0;
+      while (i <= id) {
+        $stars.eq(i).addClass('feedbackradio-star--active');
+        i++;
+      }
     }
     $(this).prev().trigger('click');
     event.stopPropagation();
@@ -99,8 +161,11 @@
    * Flatten matched inputs to same level into initialised element.
    * @return {jQuery[]} Array of targeted input elements.
    */
-  FeedbackRadio.prototype._flatten = function() {
+  FeedbackRadio.prototype._flatten = function(reverseOrder) {
     var $inputs = $(this.element).find(this.options.inputSelector);
+    if (reverseOrder) {
+      $inputs.reverse();
+    }
     $(this.element).empty().append($inputs);
     return $inputs;
   };
@@ -120,4 +185,10 @@
       }
     });
   };
+  
+  /**
+   * jQuery Reverse Helper plugin.
+   */
+  $.fn.reverse = [].reverse;
+  
 })(jQuery, window, document);
