@@ -6,7 +6,7 @@ jQuery FeedbackRadio plugin turns consecutive radio buttons into rating feedback
 Download the [production version][min] or the [development version][max].
 
 [min]: https://raw.github.com/ain/jquery-feedbackradio/master/dist/jquery-feedbackradio.min.js
-[max]: https://raw.github.com/ain/jquery-feedbackradio/master/dist/jquery-feedbackradio.js
+[max]: https://raw.github.com/ain/jquery-feedbackradio/master/src/jquery-feedbackradio.js
 
 In your web page:
 
