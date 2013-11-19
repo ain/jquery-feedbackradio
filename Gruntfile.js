@@ -1,6 +1,6 @@
 (function() {
   'use strict';
-}());
+}())
 
 module.exports = function(grunt) {
 
@@ -41,6 +41,9 @@ module.exports = function(grunt) {
       }
     },
     watch: {
+      options: {
+        livereload: true
+      },  
       gruntfile: {
         files: '<%= jshint.gruntfile.src %>',
         tasks: ['jshint:gruntfile']
@@ -63,6 +66,17 @@ module.exports = function(grunt) {
           expand: true
         }]
       }
+    },
+    connect: {
+      server: {
+        options: {
+          port: 9001,
+          base: 'example',
+          keepalive: true,
+          livereload: true,
+          open: 'http://localhost:9001/feedbackradio.html'
+        }
+      }
     }
   });
 
@@ -73,9 +87,11 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-contrib-connect');
 
   // Default task.
   grunt.registerTask('default', ['clean', 'uglify', 'copy']);
+  grunt.registerTask('server', 'connect:server');
   
   // Travis CI task.
   grunt.registerTask('travis', ['jshint', 'qunit']);
