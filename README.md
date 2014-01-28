@@ -1,4 +1,4 @@
-# jQuery FeedbackRadio [![Build Status](https://travis-ci.org/ain/jquery-feedbackradio.png?branch=master)](https://travis-ci.org/ain/jquery-feedbackradio)
+# jQuery FeedbackRadio [![Build Status](https://travis-ci.org/ain/jquery-feedbackradio.png?branch=master)](https://travis-ci.org/ain/jquery-feedbackradio) [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 
 jQuery FeedbackRadio plugin turns consecutive radio buttons into rating feedback stars.
 
@@ -29,6 +29,9 @@ See inline JSDoc comments in [source](https://github.com/ain/jquery-feedbackradi
 
 ## Examples
 See the [example/](https://github.com/ain/jquery-feedbackradio/tree/master/example) folder.
+
+## Contributing
+See [Contributing](https://github.com/ain/jquery-feedbackradio/blob/master/CONTRIBUTING.md).
 
 ## Release History
 - 2013-10-29  v0.2.0  Optional vertical block layout for feedback stars.
